@@ -42,15 +42,24 @@ bool isLeap(int year)
 {
 	return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
 }
-
+//при вызове данной функции ВСЕГДА вызывать меньшей дате от большей: d<d1 --- d.subtrcat_date(d1); 
 int Date::subtract_date(Date obj)
 {
+	if (isEqual(obj)) return 0;
 	int days = 0;
 	int max_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+	if (month == obj.month && year == obj.year)
+	{
+		return (days = abs(day - obj.day));
+	}
 	days = max_days[month - 1] - day;
 	month++;
-	while (!isEqual(obj)) {
+	while (1) {
+		if (isLeap(year))
+			max_days[1] = 29;
+		else
+			max_days[1] = 28;
 		if (month == obj.month && year==obj.year)
 		{
 			return (days += obj.day);
@@ -58,7 +67,7 @@ int Date::subtract_date(Date obj)
 		days += max_days[month - 1];
 		if (month == 12)
 		{
-			year += 1;
+			year -= 1;
 			month = 0;
 		}
 		month++;
