@@ -37,9 +37,6 @@ int Date::getYear()
 	return year;
 }
 
-
-
-
 //внешняя для класса функция определения високосных годов
 bool isLeap(int year)
 {
@@ -51,27 +48,21 @@ int Date::subtract_date(Date obj)
 	int days = 0;
 	int max_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-	int y1, y2;
-	y1 = year > obj.year ? year : obj.year;
-	y2 = year > obj.year ? obj.year : year;
-
-	for (int i = y1; i > y2; i--) {
-		if (isLeap(year))
-			days += 366;
-		else
-			days += 365;
+	days = max_days[month - 1] - day;
+	month++;
+	while (!isEqual(obj)) {
+		if (month == obj.month && year==obj.year)
+		{
+			return (days += obj.day);
+		}
+		days += max_days[month - 1];
+		if (month == 12)
+		{
+			year += 1;
+			month = 0;
+		}
+		month++;
 	}
-	
-	int m1, m2;
-	m1 = month > obj.month ? month : obj.month;
-	m2 = month > obj.month ? obj.month : month;
-	for (int i = m1; i > m2; i--)
-		days += max_days[month-1];
-
-	if(month)//
-	days += abs(day - obj.day);
-
-	return days;
 }
 
 Date Date::sum_days(int days)
@@ -81,6 +72,8 @@ Date Date::sum_days(int days)
 	while (day > max_days[month - 1]) {
 		if (isLeap(year))
 			max_days[1] = 29;
+		else
+			max_days[1] = 28;
 		day -= max_days[month - 1];
 		if (month == 12) {
 			year += 1;
@@ -95,39 +88,27 @@ Date Date::subtr_days(int days)
 {
 	int max_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	
-	if (day == days) {
+	days -= day;
+	if (days < 0)
+	{
+		day = abs(days);
+		return *this;
+	}
+	while (days >= 0) {
 		if (isLeap(year))
 			max_days[1] = 29;
+		else
+			max_days[1] = 28; //Иначе пока бегает по запущенному циклу, после первого високосного года все последующие считает вискокосными
+			//нужно возвращать обычный год на 28 дней
 		if (month == 1) {
 			year -= 1;
 			month = 13;
 		}
 		month--;
-		day = max_days[month-1];
-		return *this;
+		days -= max_days[month-1];
+		day = abs(days);
 	}
-	else if (day > days) {
-		day -= days;
-		return *this;
-	}
-	else {
-		days -= day;
-		while (days > 0) {
-			if (isLeap(year))
-				max_days[1] = 29;
-			else
-				max_days[1] = 28; //Иначе пока бегает по запущенному циклу, после первого високосного года все последующие считает вискокосными
-			//нужно возвращать обычный год на 28 дней
-			if (month == 1) {
-				year -= 1;
-				month = 13;
-			}
-			month--;
-			days -= max_days[month-1];
-			day = abs(days);
-		}
-		return *this;
-	}
+	return *this;
 }
 bool Date::isEqual(Date obj)
 {
