@@ -62,12 +62,13 @@ int Date::subtract_date(Date obj)
 			max_days[1] = 28;
 		if (month == obj.month && year==obj.year)
 		{
-			return (days += obj.day);
+			days += obj.day;
+			return days;
 		}
 		days += max_days[month - 1];
 		if (month == 12)
 		{
-			year -= 1;
+			year += 1;
 			month = 0;
 		}
 		month++;

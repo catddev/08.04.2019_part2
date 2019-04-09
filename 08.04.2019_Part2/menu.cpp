@@ -17,8 +17,7 @@ void menu(Vector v)
 		switch (choice)
 		{
 		case 1:
-			cout << "Enter indexes of dates from the array to subtract" << endl;
-			cout << "Please first enter later date" << endl;
+			cout << "Enter indexes of dates from the array to subtract. Fisrt earlier date" << endl;
 			cin >> x >> y;
 			cout << v[x].subtract_date(v[y]) << endl;
 			break;

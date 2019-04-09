@@ -23,9 +23,20 @@ int main() {
 	//d1.subtr_days(365);
 	//d1.print();
 
+
 	//int k = d1.subtract_date(d);
 	//cout << k << endl;
 
+	/*Date d3(28, 2, 2000);
+	Date d4(14, 3, 1999);
+	d3.print();
+	d4.print();
+	int k;
+	k = d4.subtract_date(d3);
+	cout << k << endl;
+
+	d3.subtr_days(60);
+	d3.print();*/
 
 	ifstream in_file("in.txt");
 	int a, b, c;
