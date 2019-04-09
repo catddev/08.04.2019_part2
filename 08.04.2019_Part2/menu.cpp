@@ -11,7 +11,7 @@ void menu(Vector v)
 		cout << " Enter 3 to subtract some days from the given date" << endl;
 		cout << " Enter 4 to compare if 2 dates are equal" << endl;
 		cout << " Enter 5 to print out information in needed format" << endl;
-		cout << " Enter 0 exit" << endl;
+		cout << " Enter 0 to exit" << endl;
 		cin >> choice;
 		if (choice == 0) break;
 		switch (choice)
