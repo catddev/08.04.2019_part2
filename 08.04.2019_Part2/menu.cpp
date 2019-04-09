@@ -19,18 +19,18 @@ void menu(Vector v)
 		case 1:
 			cout << "Enter indexes of dates from the array to subtract. Fisrt earlier date" << endl;
 			cin >> x >> y;
-			cout << v[x].subtract_date(v[y]) << endl;
+			cout << v[x]-v[y] << endl;
 			break;
 		case 2:
 			cout << "Enter index of date to change and amount of days to add: ";
 			cin >> x >> y;
-			v[x].sum_days(y);
+			v[x] + y;
 			v[x].print();
 			break;
 		case 3:
 			cout << "Enter index of date to change and amount of days to subtract: ";
 			cin >> x >> y;
-			v[x].subtr_days(y);
+			v[x]-y;
 			v[x].print();
 			break;
 		case 4:

@@ -34,9 +34,9 @@ public:
 	int getMonth();
 	int getYear();
 
-	int subtract_date(Date obj);
-	Date sum_days(int days);
-	Date subtr_days(int days);
+	int operator-(Date obj);
+	Date operator+(int days);
+	Date operator-(int days);
 	bool isEqual(Date obj);
 	void print();
 	void print_american();

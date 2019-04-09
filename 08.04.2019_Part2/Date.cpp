@@ -43,7 +43,7 @@ bool isLeap(int year)
 	return (year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
 }
 //при вызове данной функции ВСЕГДА вызывать меньшей дате от большей: d<d1 --- d.subtrcat_date(d1); 
-int Date::subtract_date(Date obj)
+int Date::operator-(Date obj)
 {
 	if (isEqual(obj)) return 0;
 	int days = 0;
@@ -75,7 +75,7 @@ int Date::subtract_date(Date obj)
 	}
 }
 
-Date Date::sum_days(int days)
+Date Date::operator+(int days)
 {
 	int max_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	day += days;
@@ -94,7 +94,7 @@ Date Date::sum_days(int days)
 	return *this; //ЧТОБЫ ИЗМЕНИТЬ ТЕКУЩУЮ ДАТУ И ВЕРНУТЬ ЭТОТ ОБЪЕКТ ИЗМЕНЕННЫМ
 }
 
-Date Date::subtr_days(int days)
+Date Date::operator-(int days)
 {
 	int max_days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	
